@@ -1,0 +1,20 @@
+{
+  "name": "frontend-project-46",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "[![Actions Status](https://github.com/Fortik1/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/Fortik1/frontend-project-46/actions)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fortik1/frontend-project-46.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fortik1/frontend-project-46/issues"
+  },
+  "homepage": "https://github.com/Fortik1/frontend-project-46#readme"
+}
