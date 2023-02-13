@@ -13,8 +13,9 @@ jobs:
     runs-on: ubuntu-lastest
 
     strategy:
-	matrix: 
-	  node-version: [18.x]
+      # Node versions list
+      matrix:
+        node-version: [18.x]
 
     steps:
 	- uses: actions/chekout@v3
