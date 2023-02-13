@@ -1,16 +1,19 @@
-name: node CI
+# Name of workflow
+name: Node CI
 
-on: 
+# Trigger the workflow on push or pull request
+on:
   - push
   - pull_request
 
-evn:
+env:
   CI: true
 
 jobs:
-  buld:
-    
-    runs-on: ubuntu-lastest
+  build:
+
+    # The type of machine to run the job on
+    runs-on: ubuntu-latest
 
     strategy:
       # Node versions list
