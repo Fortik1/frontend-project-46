@@ -8,7 +8,7 @@
   "description": "[![Actions Status](https://github.com/Fortik1/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/Fortik1/frontend-project-46/actions)",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest  --coverage"
   },
   "repository": {
     "type": "git",
