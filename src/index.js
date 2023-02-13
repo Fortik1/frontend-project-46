@@ -1,5 +1,5 @@
 import { cwd } from 'node:process';
-import { resolve, extname, format } from 'node:path';
+import { resolve, extname } from 'node:path';
 import YAML from 'js-yaml';
 import fs from 'fs';
 import formater from './format/formatMain.js';
@@ -19,6 +19,8 @@ function pars(data, format) {
       return YAML.load(data);
     case 'yaml':
       return YAML.load(data);
+    default:
+      throw new Error(`'Unknown format! ${format}'`);
   }
 }
 

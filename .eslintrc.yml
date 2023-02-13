@@ -6,6 +6,8 @@ plugins:
 env:
   node: true
 
+overrides: []
+
 extends:
   - 'airbnb-base'
   - 'plugin:jest/recommended'
