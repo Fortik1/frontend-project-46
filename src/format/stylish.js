@@ -1,27 +1,67 @@
-const space = (s) => ' '.repeat(s);
+import _ from 'lodash';
 
-const str = (tree, n = 0) => tree.map((node) => {
+const spacesCount = 4;
+const replacer = ' ';
+
+const getTwoOrSixSpaces = (depth) => {
+  const indentSize = depth * spacesCount;
+  return replacer.repeat(indentSize - 2);
+};
+
+const getFourOrEightSpaces = (depth) => {
+  const indentSize = depth * spacesCount;
+  return replacer.repeat(indentSize);
+};
+
+const stringify = (data, depth) => {
+  if (!_.isPlainObject(data)) {
+    return String(data);
+  }
+  const lines = Object.entries(data).map(
+    ([key, value]) => `${getFourOrEightSpaces(depth + 1)}${key}: ${stringify(value, depth + 1)}`,
+  );
+  return `{\n${lines.join('\n')}\n${getFourOrEightSpaces(depth)}}`;
+};
+
+const iter = (diff, depth = 1) => diff.map((node) => {
   switch (node.type) {
     case 'deleted':
-      return `${space(n)}  - ${node.key}: ${node.value}`;
+      return `${getTwoOrSixSpaces(depth)}- ${node.key}: ${stringify(
+        node.value,
+        depth,
+      )}`;
     case 'added':
-      return `${space(n)}  + ${node.key}: ${node.value}`;
+      return `${getTwoOrSixSpaces(depth)}+ ${node.key}: ${stringify(
+        node.value,
+        depth,
+      )}`;
+    case 'changed': {
+      return `${getTwoOrSixSpaces(depth)}- ${node.key}: ${stringify(
+        node.value1,
+        depth,
+      )}\n${getTwoOrSixSpaces(depth)}+ ${node.key}: ${stringify(
+        node.value2,
+        depth,
+      )}`;
+    }
     case 'unchanged':
-      return `${space(n)}    ${node.key}: ${node.value}`;
-    case 'changed':
-      return `${space(n)}  - ${node.key}: ${node.value1}\n${space(n)}  + ${node.key}: ${node.value2}`;
+      return `${getFourOrEightSpaces(depth)}${node.key}: ${stringify(
+        node.value,
+        depth,
+      )}`;
     case 'nested': {
-      const line = str(node.children, n + 4);
-      return `${space(n)}    ${node.key}:{\n${line}}`;
+      const lines = iter(node.children, depth + 1);
+      return `${getFourOrEightSpaces(depth)}${node.key}: {\n${lines.join(
+        '\n',
+      )}\n${getFourOrEightSpaces(depth)}}`;
     }
     default:
-      throw new Error(`Unckown type of node '${node.type}'`);
+      throw new Error(`Unknown type of node '${node.type}'.`);
   }
 });
 
-function formatTree(tree) {
-  const res = str(tree, 0);
-  return `{\n${res.join('\n')}\n}`;
-}
-
-export default formatTree;
+const formatStylish = (tree) => {
+  const result = iter(tree, 1);
+  return `{\n${result.join('\n')}\n}`;
+};
+export default formatStylish;
