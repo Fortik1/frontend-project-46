@@ -16,6 +16,13 @@ const test1Default = readFile('OutputTest1.txt');
 const file1 = './files/file1.json';
 const file2 = './files/file2.json';
 
-test('test1', () => {
+const fileYml1 = './files/file1.yml';
+const fileYml2 = './files/file2.yml';
+
+test('test json', () => {
     expect(gendiff(file1, file2)).toEqual(test1Default);
+})
+
+test('test yml', () => {
+    expect(gendiff(fileYml1, fileYml2)).toEqual(test1Default);
 })
