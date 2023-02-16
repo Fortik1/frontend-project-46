@@ -7,6 +7,8 @@ function formatter(tree, format) {
       return stylishFormat(tree);
     case 'plain':
       return plainFormat(tree);
+    case 'json':
+      return JSON.stringify(tree);
     default:
       throw new Error(
         `The ${format} format is supported.\n supported fornmats: stylish, plain, json`,
