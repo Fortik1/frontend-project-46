@@ -11,8 +11,9 @@ const __dirname = dirname(fileName);
 const getFixturePath = (nameFile) => path.join(__dirname, '..', 'files', nameFile);
 const readFile = (nameFile) => fs.readFileSync(getFixturePath(nameFile), 'utf-8');
 
-const test1Default = readFile('OutputTest1.txt');
-const test2Plain = readFile('OutputTestPlain.txt');
+const testDefault = readFile('OutputTest1.txt');
+const testPlain = readFile('OutputTestPlain.txt');
+const testJSON = readFile('OutputTestJson.txt');
 
 const file1 = './files/file1.json';
 const file2 = './files/file2.json';
@@ -21,13 +22,17 @@ const fileYml1 = './files/file1.yml';
 const fileYml2 = './files/file2.yml';
 
 test('json', () => {
-  expect(gendiff(file1, file2)).toEqual(test1Default);
+  expect(gendiff(file1, file2)).toEqual(testDefault);
 });
 
 test('yml', () => {
-  expect(gendiff(fileYml1, fileYml2)).toEqual(test1Default);
+  expect(gendiff(fileYml1, fileYml2)).toEqual(testDefault);
 });
 
 test('plain', () => {
-  expect(gendiff(file1, file2, 'plain')).toEqual(test2Plain);
+  expect(gendiff(file1, file2, 'plain')).toEqual(testPlain);
 });
+
+test('json', () => {
+    expect(gendiff(file1, file2, 'json')).toEqual(testJSON);
+})
