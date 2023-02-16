@@ -33,6 +33,6 @@ test('plain', () => {
   expect(gendiff(file1, file2, 'plain')).toEqual(testPlain);
 });
 
-test('json', () => {
-    expect(gendiff(file1, file2, 'json')).toEqual(testJSON);
-})
+test('JSON', () => {
+  expect(gendiff(file1, file2, 'json')).toEqual(testJSON);
+});
