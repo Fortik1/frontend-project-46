@@ -8,18 +8,18 @@ import gendiff from '../src/index.js';
 const fileName = url.fileURLToPath(import.meta.url);
 const __dirname = dirname(fileName);
 
-const getFixturePath = (nameFile) => path.join(__dirname, '..', 'files', nameFile);
+const getFixturePath = (nameFile) => path.join(__dirname, '..', '__fixtures__', nameFile);
 const readFile = (nameFile) => fs.readFileSync(getFixturePath(nameFile), 'utf-8');
 
 const testDefault = readFile('OutputTest1.txt');
 const testPlain = readFile('OutputTestPlain.txt');
 const testJSON = readFile('OutputTestJson.txt');
 
-const file1 = './files/file1.json';
-const file2 = './files/file2.json';
+const file1 = './__fixtures__/file1.json';
+const file2 = './__fixtures__/file2.json';
 
-const fileYml1 = './files/file1.yml';
-const fileYml2 = './files/file2.yml';
+const fileYml1 = './__fixtures__/file1.yml';
+const fileYml2 = './__fixtures__/file2.yml';
 
 test('json', () => {
   expect(gendiff(file1, file2)).toEqual(testDefault);
