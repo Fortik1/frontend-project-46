@@ -11,7 +11,8 @@ program
   .argument('<filepath1>')
   .argument('<filepath2>')
   .action((filepath1, filepath2) => {
-    console.log(gendeff(filepath1, filepath2));
+    const option = program.opts();
+    console.log(gendeff(filepath1, filepath2, option.format));
   });
 
 program.parse();
