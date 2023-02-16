@@ -1,4 +1,3 @@
 /node_modules
 /coverage
-/bin/.DS_store
-
+.DS_store
