@@ -1,6 +1,6 @@
 import { cwd } from 'node:process';
 import { resolve, extname } from 'node:path';
-import YAML from 'js-yaml';
+import pars from './parsers.js';
 import fs from 'fs';
 import formater from './format/formatMain.js';
 import getTree from './getTree.js';
@@ -11,18 +11,6 @@ const readFile = (file) => fs.readFileSync(file, 'utf-8');
 
 const getFormat = (file) => extname(file).substring(1);
 
-function pars(data, format) {
-  switch (format) {
-    case 'json':
-      return JSON.parse(data);
-    case 'yml':
-      return YAML.load(data);
-    case 'yaml':
-      return YAML.load(data);
-    default:
-      throw new Error(`'Unknown format! ${format}'`);
-  }
-}
 
 function gendeff(filepath1, filepath2, format = 'stylish') { // main function
   const filePath1 = getFilePath(filepath1);
