@@ -20,8 +20,6 @@
  ```
  ### **Usage:**
 ```
-gendiff -h  ==> 
-
 
 Usage: gendiff [options] <filepath1> <filepath2>
 
